@@ -1,0 +1,54 @@
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Online Banking System</title>
+<link href="<c:url value="/resources/css/bootstrap.min.css" />"
+	rel="stylesheet">
+<script src="<c:url value="/resources/js/jquery-1.11.1.min.js" />"></script>
+<script src="<c:url value="/resources/js/bootstrap.min.js" />"></script>
+<script type="text/javascript">
+function makeActive(navItem){
+	$(".nav li").removeClass("active");
+	navItem.addClass('active');
+}
+</script>
+</head>
+<body>
+
+	<nav role="navigation" class="navbar navbar-default">
+		<div class="">
+			<a href="#" class="navbar-brand">Online Banking System</a>
+		</div>
+		<div class="navbar-collapse">
+			<ul class="nav navbar-nav">
+				<li onclick="makeActive(this)"><a href="/home">Home</a></li>
+				<li><a href="/customer/showForm">Customer Registration</a></li>
+				<li><a href="/customer-profile/showForm?account=${account}">Customer
+						Profile</a></li>
+				<li><a href="/loan/showForm">Apply Loan</a></li>
+				<li><a href="/loan/listLoan">List Loan</a></li>
+			</ul>
+			<c:choose>
+				<c:when test="${not empty account}">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/logout">${account} Logout</a></li>
+
+					</ul>
+				</c:when>
+
+				<c:otherwise>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="/login">Login</a></li>
+
+					</ul>
+				</c:otherwise>
+			</c:choose>
+
+
+		</div>
+	</nav>
